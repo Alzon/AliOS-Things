@@ -1,7 +1,6 @@
-# <img src="http://o7spigzvd.bkt.clouddn.com/aos-logo-compact-1502x272.png" height="60">
+# <img src="https://img.alicdn.com/tfs/TB1e1U7vyAnBKNjSZFvXXaTKXXa-973-200.png" height="60">
 
 [![Join the chat at https://gitter.im/aliosthings/Lobby](https://img.shields.io/gitter/room/aliosthings/Lobby.svg?style=flat-square)](https://gitter.im/aliosthings/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![](https://img.shields.io/travis/alibaba/AliOS-Things/master.svg?style=flat-square)](https://travis-ci.org/alibaba/AliOS-Things)
 
 EN | [中文](./README-zh.md)
 
@@ -20,7 +19,7 @@ From an architectural point of view, AliOS Things adapts Layered Architecture an
 - Security: TLS, TFS(Trusted Framework Service), TEE(Trusted Exexcution Environment)
 - AOS API: AliOS Things exposed APIs for Application and Middleware
 - Middleware: Alibaba's value-added and commonly seen IoT components included
-- Examples: hands-on sample codes, and well tested applications such as [linkkitapp](./example/linkkitapp/README.md)
+- Examples: hands-on sample codes, and well tested applications such as [linkkitapp](./app/example/linkkitapp/README.md)
 
 All modules have been organized as Components, and each component has its own .mk file to describe its dependency with other Components, which enables applications to choose components needed easily.
 
