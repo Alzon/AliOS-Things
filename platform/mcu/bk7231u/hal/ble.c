@@ -11,6 +11,8 @@ ais_adv_init_t ais_adv_init_info;
 
 extern struct bd_addr common_default_bdaddr;
 
+int ble_disconnect_flag = 0;
+
 ais_err_t ble_stack_init(ais_bt_init_t *ais_init)
 {
     memcpy((uint8_t *)&ais_bt_init_info,(uint8_t *)ais_init,sizeof(ais_bt_init_t));
@@ -24,7 +26,10 @@ ais_err_t ble_stack_deinit()
 {
     memset((uint8_t *)&ais_bt_init_info,0,sizeof(ais_bt_init_t));
 
-    //ble_send_msg(BLE_MSG_EXIT);
+    ble_send_msg(BLE_MSG_EXIT);
+
+    bk_printf("ble_stack_deinit\r\n");
+    
     return AIS_ERR_SUCCESS;
 }
 
@@ -33,8 +38,6 @@ ais_err_t ble_send_notification(uint8_t *p_data, uint16_t length)
     ais_err_t status = AIS_ERR_SUCCESS;
 	
     status = feb3_send_fed8_ntf_value(length,p_data,0xff);
-
-    bk_printf("status:%d\r\n", status);
 	
     return status;
 }
@@ -50,7 +53,8 @@ ais_err_t ble_send_indication(uint8_t *p_data, uint16_t length)
 
 void ble_disconnect(uint8_t reason)
 {
-    bk_printf("ble_disconnect\r\n");
+    bk_printf("ble_disconnect reason = 0x%x\r\n",reason);
+
     appm_disconnect(reason);
 }
 

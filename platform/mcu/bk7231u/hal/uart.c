@@ -73,7 +73,7 @@ int32_t hal_uart_init(uart_dev_t *uart)
 
 	uart_tx_callback.callback = uart_tx_cb;
 	uart_tx_callback.param = NULL;
-	ddev_control(uart_hdl, CMD_UART_SET_TX_STOP_END_CALLBACK, (void *)&uart_tx_callback);
+	ddev_control(uart_hdl, CMD_UART_SET_TX_CALLBACK, (void *)&uart_tx_callback);
 
 	ddev_close(uart_hdl);
 
@@ -115,14 +115,14 @@ int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_
         if( uart_is_tx_fifo_full(uart->port) )
         {
 			set = 1;
-            ddev_control(uart_hdl, CMD_SET_TX_STOP_END_INT, &set);
+            ddev_control(uart_hdl, CMD_SET_STOP_END, &set);
             /* The data in Tx FIFO may have been sent out before enable TX_STOP_END interrupt */
             /* So double check the FIFO status */
             while( !uart_is_tx_fifo_empty(uart->port) )
                 rtos_get_semaphore( &pdrv->tx_semphr, 50 );
 
 			set = 0;
-            ddev_control(uart_hdl, CMD_SET_TX_STOP_END_INT, &set);
+            ddev_control(uart_hdl, CMD_SET_STOP_END, &set);
         }
 
         uart_write_byte(uart->port, ((uint8_t *)data)[i] );

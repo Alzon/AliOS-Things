@@ -70,7 +70,6 @@ extern void bk_printf(const char *fmt, ...);
     if ( !(exp) )                                   \
     {                                               \
     	as_printf;							     	\
-    	hal_reboot();                               \
         while(1);                                   \
     }                                               \
 } 

@@ -62,7 +62,10 @@ enum
     CMD_SCTRL_SET_XTALH_CTUNE,
     CMD_SCTRL_GET_XTALH_CTUNE,
     CMD_BLE_RF_BIT_SET,
-    CMD_BLE_RF_BIT_CLR,    
+    CMD_BLE_RF_BIT_CLR,
+
+    CMD_EFUSE_WRITE_BYTE,
+    CMD_EFUSE_READ_BYTE,
 	#endif // (CFG_SOC_NAME != SOC_BK7231)
 
     #if (CFG_SOC_NAME == SOC_BK7221U)
@@ -162,6 +165,33 @@ typedef union
         UINT32 resv1: 18;
     } bits;
 } SYS_CTRL_U;
+
+typedef struct efuse_oper_st
+{
+    UINT8 addr;
+    UINT8 data;    
+} EFUSE_OPER_ST, *EFUSE_OPER_PTR;
+
+#define EFUSE_ENCRYPT_WORD_ADDR                      (0)
+#define EFUSE_ENCRYPT_WORD_LEN                       (16)
+#define EFUSE_UID_ADDR                               (16)
+#define EFUSE_UID_LEN                                (8)
+#define EFUSE_MAC_START_ADDR                         (24)
+#define EFUSE_MAC_LEN                                (6)
+#define EFUSE_USER_AREA_ADDR                         (30)
+#define EFUSE_USER_AREA_LEN                          (1)
+#define EFUSE_CTRL_ADDR                              (31)
+#define EFUSE_USER_AREA_LEN                          (1)
+#define EFUSE_INIT_VAL                               (0x0)
+
+#define EFUSE_CTRL_JTAG_DISABLE                      (1 << 7)
+#define EFUSE_CTRL_FLASH_DOWNLOAD_DISABLE            (1 << 6)
+#define EFUSE_CTRL_ENCRYPT_EN                        (1 << 5)
+#define EFUSE_CTRL_ENCRYPT_DISABLE_READ              (1 << 4)
+#define EFUSE_CTRL_ENCRYPT_DISABLE_WRITE             (1 << 3)
+#define EFUSE_CTRL_UID_DISABLE_WRITE                 (1 << 2)
+#define EFUSE_CTRL_MAC_DISABLE_WRITE                 (1 << 1)
+#define EFUSE_CTRL_ALL_AREA_DISABLE_WRITE            (1 << 0)
 
 /*******************************************************************************
 * Function Declarations

@@ -95,3 +95,4 @@ endif
 $(NAME)_PREBUILT_LIBRARY := beken.a
 $(NAME)_PREBUILT_LIBRARY += ip.a
 $(NAME)_PREBUILT_LIBRARY += ble.a
+$(NAME)_PREBUILT_LIBRARY += entry.a
